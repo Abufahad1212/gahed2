@@ -12,12 +12,12 @@
     
     <style>
         :root {
-            --bg-light: #F1F5F9; /* خلفية التطبيق المضيئة والنقية */
-            --card-white: #FFFFFF; /* الأبيض النقي للبطاقات */
-            --gold-premium: #B8942A; /* الذهب المطفي الفخم المتناسق مع الأبيض */
+            --bg-light: #F1F5F9; 
+            --card-white: #FFFFFF; 
+            --gold-premium: #B8942A; 
             --gold-light: #F5E6C4;
             --danger-premium: #DC2626;
-            --text-dark: #0F172A; /* كحلي غامق وقور جداً للنصوص */
+            --text-dark: #0F172A; 
             --text-muted: #64748B;
             --disabled-btn: #E2E8F0;
         }
@@ -39,7 +39,6 @@
             overflow-x: hidden;
         }
 
-        /* شاشة تسجيل الدخول المضيئة والفاخرة */
         #auth-screen {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -66,7 +65,6 @@
             font-size: 50px;
             margin-bottom: 10px;
             color: var(--gold-premium);
-            text-shadow: 0 0 15px rgba(184, 148, 42, 0.1);
         }
 
         .input-group {
@@ -97,7 +95,6 @@
         .input-group input:focus {
             outline: none;
             border-color: var(--gold-premium);
-            box-shadow: 0 0 10px rgba(184, 148, 42, 0.1);
             background: #FFF;
         }
 
@@ -111,7 +108,6 @@
             border-bottom: 1px solid rgba(184, 148, 42, 0.15);
         }
 
-        /* شريط التنقل السفلي الأبيض الراقِ */
         nav {
             display: flex;
             background: var(--card-white);
@@ -181,10 +177,8 @@
             margin-bottom: 18px;
             box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
             text-align: center;
-            border: 1px solid rgba(0,0,0,0.01);
         }
 
-        /* التنبيه الديني */
         .warning-banner {
             background: #FEF2F2;
             border: 1px solid #FEE2E2;
@@ -198,7 +192,6 @@
             line-height: 1.6;
         }
 
-        /* 👑 العداد الدائري الفخم بالخلفية المضيئة 👑 */
         .circle-wrapper {
             display: flex;
             justify-content: center;
@@ -212,7 +205,7 @@
             border-radius: 50%;
             background: radial-gradient(circle, #FFFFFF 60%, #F8FAFC 100%);
             border: 5px solid var(--gold-premium);
-            box-shadow: 0 10px 30px rgba(184, 148, 42, 0.15), inset 0 0 15px rgba(184, 148, 42, 0.05);
+            box-shadow: 0 10px 30px rgba(184, 148, 42, 0.15);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -233,7 +226,6 @@
             margin-top: 4px;
         }
 
-        /* شبكة الإحصائيات المتوازنة */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -277,14 +269,13 @@
             text-align: center;
         }
 
-        /* ✨ الأزرار الاحترافية المصغرة والأنيقة ✨ */
         .btn {
             background: linear-gradient(135deg, #B8942A 0%, #91721F 100%);
             color: #FFFFFF;
             border: none;
-            padding: 12px 20px; /* تصغير الـ Padding لتكون ملمومة واحترافية */
+            padding: 12px 20px;
             border-radius: 12px;
-            font-size: 14.5px; /* حجم خط متناسق */
+            font-size: 14.5px;
             font-weight: 700;
             cursor: pointer;
             width: 100%;
@@ -310,19 +301,29 @@
             border: 1px solid #FCA5A5;
             box-shadow: none;
             margin-top: 12px;
-            padding: 10px 18px; /* أنحف بقليل لتمييز الأهمية */
+            padding: 10px 18px;
             font-size: 13.5px;
-        }
-
-        .btn-danger:active {
-            background: #FCA5A5;
         }
 
         .invite-box {
             background: #F8FAFC;
             border: 1px dashed var(--gold-premium);
-            padding: 12px;
+            padding: 15px;
             border-radius: 14px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .code-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #FFF;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
         }
 
         .leaderboard-list {
@@ -433,7 +434,6 @@
             <div class="card">
                 <h3 style="font-weight: 700; font-size: 15px; color: var(--text-dark); margin-bottom: 5px;">المؤشر الزمني للثبات والعفة</h3>
                 
-                <!-- العداد الدائري باللون الأبيض الفاخر -->
                 <div class="circle-wrapper">
                     <div class="counter-circle">
                         <div class="counter-number" id="days-count">0</div>
@@ -441,7 +441,6 @@
                     </div>
                 </div>
 
-                <!-- أيام الثبات والمدة القياسية جنباً إلى جنب -->
                 <div class="stats-grid">
                     <div class="stat-item-box">
                         <div class="stat-item-title">أيام الثبات الحالية</div>
@@ -460,7 +459,6 @@
                     </div>
                 </div>
                 
-                <!-- الأزرار الأكثر دقة وملمومة -->
                 <button class="btn" id="action-btn" onclick="claimDay()">➕ مر يوم آخر وأنا على عهدي</button>
                 <button class="btn btn-danger" onclick="resetCounter()">⚠️ نقضت العهد (تصفير العداد واستغفار)</button>
             </div>
@@ -471,16 +469,29 @@
             </div>
         </div>
 
-        <!-- 2. واجهة التنافس -->
+        <!-- 2. واجهة التنافس المحدثة برمز الدعوة ومشاركته -->
         <div id="screen-competition" class="screen">
             <div class="card">
-                <h3 style="text-align: right; font-size: 16px; margin-bottom: 10px; color: var(--text-dark);">تأمين دائرة التواصي بالحق</h3>
+                <h3 style="text-align: right; font-size: 16px; margin-bottom: 12px; color: var(--text-dark);">مشاركة وتحدي الأصدقاء</h3>
+                
+                <div class="invite-box">
+                    <div>📢 كودك الخاص بك (شاركه مع أصدقائك):</div>
+                    <div class="code-row">
+                        <strong id="my-invite-code" style="color: var(--gold-premium); font-size: 16px; letter-spacing: 1px;">جاري التوليد...</strong>
+                        <button class="btn" style="width: auto; padding: 4px 12px; font-size: 12px;" onclick="copyCode()">نسخ الكود</button>
+                    </div>
+                </div>
+
+                <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 20px 0;">
+
+                <h3 style="text-align: right; font-size: 15px; margin-bottom: 10px; color: var(--text-dark);">الانضمام لمجموعة صديقك</h3>
                 <div class="input-group" style="display: flex; gap: 8px; margin-bottom: 0;">
-                    <input type="text" id="invite-code" placeholder="أدخل كود المجموعة">
+                    <input type="text" id="invite-code-input" placeholder="أدخل كود صديقك">
                     <button class="btn" style="width: auto; white-space: nowrap; padding: 10px 16px;" onclick="joinGroup()">انضمام</button>
                 </div>
-                <div class="invite-box" style="margin-top: 12px; font-size: 14px;">
-                    ✨ كود التنافس الخاص بك لإرساله لأصحابك: <strong id="group-display" style="color: var(--gold-premium);">لم تنضم بعد</strong>
+                
+                <div style="text-align: right; font-size: 12px; color: var(--text-muted); margin-top: 8px;" id="joined-group-status">
+                    المجموعة الحالية: لم تنضم لكود خارجي بعد (تعرض قائمة صدارتك الخاصة).
                 </div>
             </div>
 
@@ -488,7 +499,7 @@
                 <h3 style="text-align: right; font-size: 16px; margin-bottom: 3px; color: var(--gold-premium);">لوحة صدارة الطهارة</h3>
                 <p style="text-align: right; color: var(--text-muted); font-size: 12.5px; margin-bottom: 12px;">«وَفِي ذَٰلِكَ فَلْيَتَنَافَسِ الْمُتَنَافِسُونَ»</p>
                 <ul class="leaderboard-list" id="leaderboard-ui">
-                    <div style="color: var(--text-muted); font-size: 13.5px; padding: 15px 0;">لا توجد بيانات حية. شارك الكود الموحد مع أصحابك لتظهروا في لوحة الصدارة معاً.</div>
+                    <!-- تظهر البيانات ديناميكياً هنا -->
                 </ul>
             </div>
         </div>
@@ -512,18 +523,27 @@
 
     <script>
         let currentUser = null;
-        let groupCode = "";
+        let joinedGroupCode = "";
         let timerInterval = null;
+
+        // دالة مسؤولة عن توليد كود عشوائي للمستخدم الجديد عند التسجيل
+        function generateRandomCode(name) {
+            const cleanName = name.replace(/[^a-zA-Z0-9آ-ي]/g, '').substring(0, 5).toUpperCase();
+            const randomNum = Math.floor(100 + Math.random() * 900);
+            return `${cleanName}-${randomNum}`;
+        }
 
         function initApp() {
             const savedUser = localStorage.getItem('activeUser');
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
-                groupCode = localStorage.getItem('groupCode') || "";
+                joinedGroupCode = localStorage.getItem('joinedGroupCode') || "";
                 
-                if(currentUser.relapses === undefined) currentUser.relapses = 0;
-                if(currentUser.maxDays === undefined) currentUser.maxDays = currentUser.days;
-                if(currentUser.lastClaimTime === undefined) currentUser.lastClaimTime = null;
+                // التأكد من وجود كود خاص بالمستخدم، وإلا يتم توليده فوراً
+                if (!currentUser.myInviteCode) {
+                    currentUser.myInviteCode = generateRandomCode(currentUser.name);
+                    localStorage.setItem('activeUser', JSON.stringify(currentUser));
+                }
 
                 document.querySelectorAll('.current-user-name').forEach(el => el.innerText = currentUser.name);
                 document.getElementById('auth-screen').style.display = 'none';
@@ -537,15 +557,48 @@
             const pass = document.getElementById('password').value.trim();
             
             if(!name || !pass) {
-                alert("الرجاء إدخل الاسم الرمزي وكلمة المرور لتوثيق ميثاقك.");
+                alert("الرجاء إدخال الاسم الرمزي وكلمة المرور لتوثيق ميثاقك.");
                 return;
             }
 
-            currentUser = { name: name, days: 0, maxDays: 0, relapses: 0, lastClaimTime: null };
+            // توليد كود الدعوة للمستخدم وحفظه مع بياناته
+            const myInviteCode = generateRandomCode(name);
+
+            currentUser = { 
+                name: name, 
+                days: 0, 
+                maxDays: 0, 
+                relapses: 0, 
+                lastClaimTime: null,
+                myInviteCode: myInviteCode
+            };
+            
             localStorage.setItem('activeUser', JSON.stringify(currentUser));
             document.querySelectorAll('.current-user-name').forEach(el => el.innerText = name);
             document.getElementById('auth-screen').style.display = 'none';
             updateUI();
+        }
+
+        function copyCode() {
+            if (!currentUser || !currentUser.myInviteCode) return;
+            navigator.clipboard.writeText(currentUser.myInviteCode);
+            alert(`تم نسخ كود الدعوة الخاص بك بنجاح: ${currentUser.myInviteCode}\nأرسله الآن لأصحابك لمنافستهم!`);
+        }
+
+        function joinGroup() {
+            const code = document.getElementById('invite-code-input').value.trim().toUpperCase();
+            if(!code) return;
+            
+            if(code === currentUser.myInviteCode) {
+                alert("هذا كودك الشخصي! لا يمكنك الانضمام لكودك الخاص، أرسله لأصدقائك لينضموا هم إليك.");
+                return;
+            }
+
+            joinedGroupCode = code;
+            localStorage.setItem('joinedGroupCode', joinedGroupCode);
+            alert(`تم الانضمام بنجاح لمجموعة الصديق: ${joinedGroupCode}`);
+            document.getElementById('invite-code-input').value = "";
+            saveAndRefresh();
         }
 
         function claimDay() {
@@ -595,7 +648,7 @@
         }
 
         function resetCounter() {
-            if(confirm("هل انكسرت الإرادة ونُقض العهد العظيم مع الله في الخفاء؟ قف فوراً على قدميك وتُب واستغفر.. الله يقبل التائبين، لكن العداد سيعود للصفر حزناً وتأديباً للنفس. هل أنت متأكد؟")) {
+            if(confirm("هل انكسرت الإرادة ونُقض العهد العظيم مع الله في الخفاء؟ قف فوراً على قدميك وتُب واستغفر.. العداد سيعود للصفر تأديباً للنفس. هل أنت متأكد؟")) {
                 currentUser.days = 0;
                 currentUser.relapses += 1;
                 currentUser.lastClaimTime = null;
@@ -605,16 +658,6 @@
                 startLockTimerCheck();
                 switchScreen('home');
             }
-        }
-
-        function joinGroup() {
-            const code = document.getElementById('invite-code').value.trim().toUpperCase();
-            if(!code) return;
-            groupCode = code;
-            localStorage.setItem('groupCode', groupCode);
-            alert(`تم الانضمام بنجاح: ${groupCode}`);
-            document.getElementById('invite-code').value = "";
-            saveAndRefresh();
         }
 
         function saveAndRefresh() {
@@ -628,19 +671,27 @@
             document.getElementById('stats-best-record').innerText = currentUser.maxDays + " يوم";
             document.getElementById('stats-relapses').innerText = currentUser.relapses;
             
-            if(groupCode) {
-                document.getElementById('group-display').innerText = groupCode;
-                renderLeaderboard();
+            if (currentUser && currentUser.myInviteCode) {
+                document.getElementById('my-invite-code').innerText = currentUser.myInviteCode;
             }
+
+            if(joinedGroupCode) {
+                document.getElementById('joined-group-status').innerText = `المجموعة الحالية المشترك بها: ${joinedGroupCode}`;
+            } else {
+                document.getElementById('joined-group-status').innerText = "المجموعة الحالية: قائمة صدارتك الشخصية الحالية.";
+            }
+
+            renderLeaderboard();
         }
 
         function renderLeaderboard() {
             const listContainer = document.getElementById('leaderboard-ui');
             let mockNetworkUsers = [{ name: currentUser.name, days: currentUser.days, isMe: true }];
 
-            if(groupCode === "TAQWA-7") {
-                mockNetworkUsers.push({ name: "عبدالله", days: 10, isMe: false });
-                mockNetworkUsers.push({ name: "عمر", days: 4, isMe: false });
+            // إذا أدخل المستخدم كود صديق معين (كمثال محاكاة)
+            if(joinedGroupCode !== "") {
+                mockNetworkUsers.push({ name: "صديقك الملتزم", days: Math.max(1, currentUser.days + 2), isMe: false });
+                mockNetworkUsers.push({ name: "مبادر بالخير", days: Math.max(0, currentUser.days - 1), isMe: false });
             }
 
             mockNetworkUsers.sort((a, b) => b.days - a.days);
@@ -671,7 +722,7 @@
             if (timerInterval) clearInterval(timerInterval);
             localStorage.clear();
             currentUser = null;
-            groupCode = "";
+            joinedGroupCode = "";
             document.getElementById('auth-screen').style.display = 'flex';
             switchScreen('home');
         }
