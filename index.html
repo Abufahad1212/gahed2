@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة العهد | الثبات العظيم</title>
+    
+    <!-- خط كابرو الفاخر بأوزان مختلفة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-light: #F1F5F9; /* خلفية التطبيق المضيئة والنقية */
+            --card-white: #FFFFFF; /* الأبيض النقي للبطاقات */
+            --gold-premium: #B8942A; /* الذهب المطفي الفخم المتناسق مع الأبيض */
+            --gold-light: #F5E6C4;
+            --danger-premium: #DC2626;
+            --text-dark: #0F172A; /* كحلي غامق وقور جداً للنصوص */
+            --text-muted: #64748B;
+            --disabled-btn: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* شاشة تسجيل الدخول المضيئة والفاخرة */
+        #auth-screen {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--bg-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: var(--card-white);
+            padding: 35px 25px;
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            border: 1px solid rgba(184, 148, 42, 0.15);
+        }
+
+        .auth-logo {
+            font-size: 50px;
+            margin-bottom: 10px;
+            color: var(--gold-premium);
+            text-shadow: 0 0 15px rgba(184, 148, 42, 0.1);
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+            text-align: right;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 15px;
+            text-align: right;
+            transition: all 0.3s;
+            background: #FAFAFA;
+            color: var(--text-dark);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--gold-premium);
+            box-shadow: 0 0 10px rgba(184, 148, 42, 0.1);
+            background: #FFF;
+        }
+
+        header {
+            background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-light) 100%);
+            color: var(--text-dark);
+            padding: 25px 20px;
+            text-align: center;
+            font-size: 19px;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(184, 148, 42, 0.15);
+        }
+
+        /* شريط التنقل السفلي الأبيض الراقِ */
+        nav {
+            display: flex;
+            background: var(--card-white);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 100;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding: 8px 0;
+            box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.03);
+        }
+
+        nav button {
+            flex: 1;
+            padding: 6px 0;
+            border: none;
+            background: none;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        nav button .icon {
+            font-size: 20px;
+            color: var(--text-muted);
+        }
+
+        nav button.active {
+            color: var(--gold-premium);
+        }
+
+        nav button.active .icon {
+            color: var(--gold-premium);
+        }
+
+        .main-container {
+            padding: 20px 16px 110px 16px;
+            max-width: 450px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.35s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--card-white);
+            border-radius: 24px;
+            padding: 25px 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.01);
+        }
+
+        /* التنبيه الديني */
+        .warning-banner {
+            background: #FEF2F2;
+            border: 1px solid #FEE2E2;
+            color: #991B1B;
+            padding: 14px;
+            border-radius: 16px;
+            font-size: 13.5px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        /* 👑 العداد الدائري الفخم بالخلفية المضيئة 👑 */
+        .circle-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .counter-circle {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #FFFFFF 60%, #F8FAFC 100%);
+            border: 5px solid var(--gold-premium);
+            box-shadow: 0 10px 30px rgba(184, 148, 42, 0.15), inset 0 0 15px rgba(184, 148, 42, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .counter-number {
+            font-size: 65px;
+            font-weight: 900;
+            color: var(--text-dark);
+            line-height: 1;
+        }
+
+        .counter-text-inside {
+            font-size: 12px;
+            color: var(--gold-premium);
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        /* شبكة الإحصائيات المتوازنة */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .stat-item-box {
+            background: #F8FAFC;
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            text-align: center;
+        }
+
+        .stat-item-title {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+
+        .stat-item-value {
+            font-size: 16.5px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .verse-box {
+            background: #F8FAFC;
+            padding: 18px;
+            border-radius: 16px;
+            border-right: 4px solid var(--gold-premium);
+            margin: 18px 0;
+        }
+
+        .verse-text {
+            font-weight: 700;
+            color: var(--gold-premium);
+            margin-bottom: 6px;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        /* ✨ الأزرار الاحترافية المصغرة والأنيقة ✨ */
+        .btn {
+            background: linear-gradient(135deg, #B8942A 0%, #91721F 100%);
+            color: #FFFFFF;
+            border: none;
+            padding: 12px 20px; /* تصغير الـ Padding لتكون ملمومة واحترافية */
+            border-radius: 12px;
+            font-size: 14.5px; /* حجم خط متناسق */
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(184, 148, 42, 0.15);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn:disabled {
+            background: var(--disabled-btn);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .btn-danger {
+            background: #FEE2E2;
+            color: var(--danger-premium);
+            border: 1px solid #FCA5A5;
+            box-shadow: none;
+            margin-top: 12px;
+            padding: 10px 18px; /* أنحف بقليل لتمييز الأهمية */
+            font-size: 13.5px;
+        }
+
+        .btn-danger:active {
+            background: #FCA5A5;
+        }
+
+        .invite-box {
+            background: #F8FAFC;
+            border: 1px dashed var(--gold-premium);
+            padding: 12px;
+            border-radius: 14px;
+        }
+
+        .leaderboard-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background: #F8FAFC;
+            margin-bottom: 10px;
+            border-radius: 14px;
+            align-items: center;
+            border: 1px solid #E2E8F0;
+        }
+
+        .leaderboard-item.me {
+            background-color: #FFFDF5;
+            border: 1px solid var(--gold-premium);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rank {
+            background: #E2E8F0;
+            color: var(--text-dark);
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .days-badge {
+            background: #E2E8F0;
+            padding: 5px 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--gold-premium);
+        }
+
+        .me .days-badge {
+            background: var(--gold-premium);
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شاشة تسجيل الدخول والعهد -->
+    <div id="auth-screen">
+        <div class="auth-card">
+            <div class="auth-logo">🕌</div>
+            <h2 style="font-weight: 900; margin-bottom: 5px; color: var(--text-dark);">ميثاق العهد الفاخر</h2>
+            <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 25px;">«وَأَوْفُوا بِالْعَهْدِ إِنَّ الْعَهْدَ كَانَ مَسْؤُولًا»</p>
+            
+            <div class="input-group">
+                <label>الاسم المستعار للحساب:</label>
+                <input type="text" id="username" placeholder="مثال: التائب_إلى_الله">
+            </div>
+            
+            <div class="input-group">
+                <label>رقم سري خاص بك:</label>
+                <input type="password" id="password" placeholder="أدخل كلمة المرور لتأمين حسابك">
+            </div>
+            
+            <button class="btn" onclick="login()">الدخول وتوثيق العهد</button>
+        </div>
+    </div>
+
+    <header>🕌 ميثاق الثبات والوفاء بالعهد مع الله</header>
+
+    <nav>
+        <button id="nav-home" class="active" onclick="switchScreen('home')">
+            <span class="icon">📖</span>
+            <span>العهد والعداد</span>
+        </button>
+        <button id="nav-competition" onclick="switchScreen('competition')">
+            <span class="icon">👑</span>
+            <span>تنافس الصالحين</span>
+        </button>
+        <button id="nav-profile" onclick="switchScreen('profile')">
+            <span class="icon">👤</span>
+            <span>حسابي</span>
+        </button>
+    </nav>
+
+    <div class="main-container">
+
+        <!-- 1. واجهة العهد والعداد -->
+        <div id="screen-home" class="screen active">
+            
+            <div class="warning-banner">
+                🛑 <strong>مقام المراقبة الجليل:</strong> <br>
+                تذكّر دائماً قبل الضعف، أنك نقشت ميثاقاً غليظاً مع ملك الملوك؛ غلقت الأبواب أم لم تغلقها، فالمطلع عليك هو الله العظيم، فلا تخذل نفسك ولا تهتك عهدك.
+            </div>
+
+            <div class="card">
+                <h3 style="font-weight: 700; font-size: 15px; color: var(--text-dark); margin-bottom: 5px;">المؤشر الزمني للثبات والعفة</h3>
+                
+                <!-- العداد الدائري باللون الأبيض الفاخر -->
+                <div class="circle-wrapper">
+                    <div class="counter-circle">
+                        <div class="counter-number" id="days-count">0</div>
+                        <div class="counter-text-inside">أيام التوقف عنها</div>
+                    </div>
+                </div>
+
+                <!-- أيام الثبات والمدة القياسية جنباً إلى جنب -->
+                <div class="stats-grid">
+                    <div class="stat-item-box">
+                        <div class="stat-item-title">أيام الثبات الحالية</div>
+                        <div class="stat-item-value" id="stats-current-days">0 يوم</div>
+                    </div>
+                    <div class="stat-item-box">
+                        <div class="stat-item-title" style="color: var(--gold-premium);">أطول مدة ثبات للعهد</div>
+                        <div class="stat-item-value" id="stats-best-record" style="color: var(--gold-premium);">0 يوم</div>
+                    </div>
+                </div>
+
+                <div class="stats-grid" style="grid-template-columns: 1fr; margin-top: -8px; margin-bottom: 20px;">
+                    <div class="stat-item-box" style="border: 1px solid #fee2e2; background: #FFFDFD;">
+                        <div class="stat-item-title" style="color: #991B1B;">إجمالي المرات التي نقضت فيها العهد (الانتكاسات)</div>
+                        <div class="stat-item-value" id="stats-relapses" style="color: #991B1B;">0</div>
+                    </div>
+                </div>
+                
+                <!-- الأزرار الأكثر دقة وملمومة -->
+                <button class="btn" id="action-btn" onclick="claimDay()">➕ مر يوم آخر وأنا على عهدي</button>
+                <button class="btn btn-danger" onclick="resetCounter()">⚠️ نقضت العهد (تصفير العداد واستغفار)</button>
+            </div>
+
+            <div class="verse-box">
+                <div class="verse-text">﴿أَلَمْ يَعْلَم بِأَنَّ اللَّهَ يَرَىٰ﴾</div>
+                <p style="color: var(--text-muted); text-align: center; font-size: 13.5px;">لو استشعرت هذه الآية في خلوتك، لذابت الشهوة الحرام خوفاً وحياءً من الخالق سبحانه.</p>
+            </div>
+        </div>
+
+        <!-- 2. واجهة التنافس -->
+        <div id="screen-competition" class="screen">
+            <div class="card">
+                <h3 style="text-align: right; font-size: 16px; margin-bottom: 10px; color: var(--text-dark);">تأمين دائرة التواصي بالحق</h3>
+                <div class="input-group" style="display: flex; gap: 8px; margin-bottom: 0;">
+                    <input type="text" id="invite-code" placeholder="أدخل كود المجموعة">
+                    <button class="btn" style="width: auto; white-space: nowrap; padding: 10px 16px;" onclick="joinGroup()">انضمام</button>
+                </div>
+                <div class="invite-box" style="margin-top: 12px; font-size: 14px;">
+                    ✨ كود التنافس الخاص بك لإرساله لأصحابك: <strong id="group-display" style="color: var(--gold-premium);">لم تنضم بعد</strong>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="text-align: right; font-size: 16px; margin-bottom: 3px; color: var(--gold-premium);">لوحة صدارة الطهارة</h3>
+                <p style="text-align: right; color: var(--text-muted); font-size: 12.5px; margin-bottom: 12px;">«وَفِي ذَٰلِكَ فَلْيَتَنَافَسِ الْمُتَنَافِسُونَ»</p>
+                <ul class="leaderboard-list" id="leaderboard-ui">
+                    <div style="color: var(--text-muted); font-size: 13.5px; padding: 15px 0;">لا توجد بيانات حية. شارك الكود الموحد مع أصحابك لتظهروا في لوحة الصدارة معاً.</div>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3. واجهة حسابي -->
+        <div id="screen-profile" class="screen">
+            <div class="card">
+                <div style="font-size: 40px; margin-bottom: 8px; color: var(--gold-premium);">👑</div>
+                <h2 class="current-user-name" style="font-weight: 900; color: var(--text-dark); font-size: 20px;">المستمسك بالعهد</h2>
+                
+                <div style="text-align: right; background: #F8FAFC; padding: 18px; border-radius: 16px; margin: 18px 0; border: 1px solid #E2E8F0;">
+                    <p style="margin-bottom: 10px; font-size: 14.5px;">🕋 العهد المبرم: <span style="color: #16A34A; font-weight: bold;">قائم ونقي بإذن الله</span></p>
+                    <p style="font-size: 14px;">🔒 أمان وخصوصية البيانات: <span style="color: var(--text-muted);">مشفرة ومحفوظة محلياً في جهازك</span></p>
+                </div>
+
+                <button class="btn" style="background: #64748B; color: #fff; box-shadow: none; font-size: 13.5px; padding: 10px 20px;" onclick="logout()">تسجيل خروج آمن</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentUser = null;
+        let groupCode = "";
+        let timerInterval = null;
+
+        function initApp() {
+            const savedUser = localStorage.getItem('activeUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                groupCode = localStorage.getItem('groupCode') || "";
+                
+                if(currentUser.relapses === undefined) currentUser.relapses = 0;
+                if(currentUser.maxDays === undefined) currentUser.maxDays = currentUser.days;
+                if(currentUser.lastClaimTime === undefined) currentUser.lastClaimTime = null;
+
+                document.querySelectorAll('.current-user-name').forEach(el => el.innerText = currentUser.name);
+                document.getElementById('auth-screen').style.display = 'none';
+                updateUI();
+                startLockTimerCheck();
+            }
+        }
+
+        function login() {
+            const name = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            
+            if(!name || !pass) {
+                alert("الرجاء إدخل الاسم الرمزي وكلمة المرور لتوثيق ميثاقك.");
+                return;
+            }
+
+            currentUser = { name: name, days: 0, maxDays: 0, relapses: 0, lastClaimTime: null };
+            localStorage.setItem('activeUser', JSON.stringify(currentUser));
+            document.querySelectorAll('.current-user-name').forEach(el => el.innerText = name);
+            document.getElementById('auth-screen').style.display = 'none';
+            updateUI();
+        }
+
+        function claimDay() {
+            const now = Date.now();
+            currentUser.days += 1;
+            if (currentUser.days > currentUser.maxDays) {
+                currentUser.maxDays = currentUser.days;
+            }
+            currentUser.lastClaimTime = now;
+            
+            saveAndRefresh();
+            startLockTimerCheck();
+        }
+
+        function startLockTimerCheck() {
+            if (timerInterval) clearInterval(timerInterval);
+            const btn = document.getElementById('action-btn');
+            
+            if (!currentUser || !currentUser.lastClaimTime) {
+                btn.disabled = false;
+                btn.innerText = "➕ مر يوم آخر وأنا على عهدي";
+                return;
+            }
+
+            function updateTimer() {
+                const now = Date.now();
+                const passedTime = now - currentUser.lastClaimTime;
+                const oneDayInMs = 24 * 60 * 60 * 1000;
+                
+                if (passedTime >= oneDayInMs) {
+                    btn.disabled = false;
+                    btn.innerText = "➕ مر يوم آخر وأنا على عهدي";
+                    clearInterval(timerInterval);
+                } else {
+                    const timeLeft = oneDayInMs - passedTime;
+                    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                    
+                    btn.disabled = true;
+                    btn.innerText = `🔒 تم حفظ عهد اليوم (متبقي: ${hours}س و${minutes}د و${seconds}ث)`;
+                }
+            }
+
+            updateTimer();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function resetCounter() {
+            if(confirm("هل انكسرت الإرادة ونُقض العهد العظيم مع الله في الخفاء؟ قف فوراً على قدميك وتُب واستغفر.. الله يقبل التائبين، لكن العداد سيعود للصفر حزناً وتأديباً للنفس. هل أنت متأكد؟")) {
+                currentUser.days = 0;
+                currentUser.relapses += 1;
+                currentUser.lastClaimTime = null;
+                if (timerInterval) clearInterval(timerInterval);
+                
+                saveAndRefresh();
+                startLockTimerCheck();
+                switchScreen('home');
+            }
+        }
+
+        function joinGroup() {
+            const code = document.getElementById('invite-code').value.trim().toUpperCase();
+            if(!code) return;
+            groupCode = code;
+            localStorage.setItem('groupCode', groupCode);
+            alert(`تم الانضمام بنجاح: ${groupCode}`);
+            document.getElementById('invite-code').value = "";
+            saveAndRefresh();
+        }
+
+        function saveAndRefresh() {
+            localStorage.setItem('activeUser', JSON.stringify(currentUser));
+            updateUI();
+        }
+
+        function updateUI() {
+            document.getElementById('days-count').innerText = currentUser.days;
+            document.getElementById('stats-current-days').innerText = currentUser.days + " يوم";
+            document.getElementById('stats-best-record').innerText = currentUser.maxDays + " يوم";
+            document.getElementById('stats-relapses').innerText = currentUser.relapses;
+            
+            if(groupCode) {
+                document.getElementById('group-display').innerText = groupCode;
+                renderLeaderboard();
+            }
+        }
+
+        function renderLeaderboard() {
+            const listContainer = document.getElementById('leaderboard-ui');
+            let mockNetworkUsers = [{ name: currentUser.name, days: currentUser.days, isMe: true }];
+
+            if(groupCode === "TAQWA-7") {
+                mockNetworkUsers.push({ name: "عبدالله", days: 10, isMe: false });
+                mockNetworkUsers.push({ name: "عمر", days: 4, isMe: false });
+            }
+
+            mockNetworkUsers.sort((a, b) => b.days - a.days);
+            listContainer.innerHTML = "";
+            mockNetworkUsers.forEach((user, index) => {
+                const item = document.createElement('li');
+                item.className = `leaderboard-item ${user.isMe ? 'me' : ''}`;
+                item.innerHTML = `
+                    <div class="user-info">
+                        <span class="rank">${index + 1}</span>
+                        <span style="font-weight: bold;">${user.name} ${user.isMe ? '(أنت)' : ''}</span>
+                    </div>
+                    <span class="days-badge">${user.days} يوم ثبات</span>
+                `;
+                listContainer.appendChild(item);
+            });
+        }
+
+        function switchScreen(screenName) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+            document.getElementById('screen-' + screenName).classList.add('active');
+            document.getElementById('nav-' + screenName).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function logout() {
+            if (timerInterval) clearInterval(timerInterval);
+            localStorage.clear();
+            currentUser = null;
+            groupCode = "";
+            document.getElementById('auth-screen').style.display = 'flex';
+            switchScreen('home');
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
