@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة العهد | الثبات العظيم</title>
     
-    <!-- خط كابرو الفاخر بأوزان مختلفة -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2=family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -61,329 +60,83 @@
             border: 1px solid rgba(184, 148, 42, 0.15);
         }
 
-        .auth-logo {
-            font-size: 50px;
-            margin-bottom: 10px;
-            color: var(--gold-premium);
-        }
+        .auth-logo { font-size: 50px; margin-bottom: 10px; color: var(--gold-premium); }
 
-        .input-group {
-            margin-bottom: 18px;
-            text-align: right;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--text-dark);
-        }
-
+        .input-group { margin-bottom: 18px; text-align: right; }
+        .input-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 14px; color: var(--text-dark); }
         .input-group input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1.5px solid #E2E8F0;
-            border-radius: 12px;
-            font-size: 15px;
-            text-align: right;
-            transition: all 0.3s;
-            background: #FAFAFA;
-            color: var(--text-dark);
+            width: 100%; padding: 12px 16px; border: 1.5px solid #E2E8F0; border-radius: 12px;
+            font-size: 15px; text-align: right; transition: all 0.3s; background: #FAFAFA; color: var(--text-dark);
         }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--gold-premium);
-            background: #FFF;
-        }
+        .input-group input:focus { outline: none; border-color: var(--gold-premium); background: #FFF; }
 
         header {
             background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-light) 100%);
-            color: var(--text-dark);
-            padding: 25px 20px;
-            text-align: center;
-            font-size: 19px;
-            font-weight: 700;
+            color: var(--text-dark); padding: 25px 20px; text-align: center; font-size: 19px; font-weight: 700;
             border-bottom: 1px solid rgba(184, 148, 42, 0.15);
         }
 
         nav {
-            display: flex;
-            background: var(--card-white);
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            z-index: 100;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            padding: 8px 0;
-            box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.03);
+            display: flex; background: var(--card-white); border-top: 1px solid rgba(0, 0, 0, 0.05);
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; border-top-left-radius: 20px;
+            border-top-right-radius: 20px; padding: 8px 0; box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.03);
         }
-
         nav button {
-            flex: 1;
-            padding: 6px 0;
-            border: none;
-            background: none;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-muted);
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
+            flex: 1; padding: 6px 0; border: none; background: none; font-size: 12px; font-weight: 600;
+            color: var(--text-muted); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;
         }
+        nav button .icon { font-size: 20px; color: var(--text-muted); }
+        nav button.active { color: var(--gold-premium); }
+        nav button.active .icon { color: var(--gold-premium); }
 
-        nav button .icon {
-            font-size: 20px;
-            color: var(--text-muted);
-        }
+        .main-container { padding: 20px 16px 110px 16px; max-width: 450px; margin: 0 auto; width: 100%; }
+        .screen { display: none; }
+        .screen.active { display: block; animation: fadeIn 0.35s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-        nav button.active {
-            color: var(--gold-premium);
-        }
+        .card { background: var(--card-white); border-radius: 24px; padding: 25px 20px; margin-bottom: 18px; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02); text-align: center; }
+        .warning-banner { background: #FEF2F2; border: 1px solid #FEE2E2; color: #991B1B; padding: 14px; border-radius: 16px; font-size: 13.5px; font-weight: 600; margin-bottom: 18px; text-align: right; line-height: 1.6; }
 
-        nav button.active .icon {
-            color: var(--gold-premium);
-        }
-
-        .main-container {
-            padding: 20px 16px 110px 16px;
-            max-width: 450px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .screen {
-            display: none;
-        }
-
-        .screen.active {
-            display: block;
-            animation: fadeIn 0.35s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .card {
-            background: var(--card-white);
-            border-radius: 24px;
-            padding: 25px 20px;
-            margin-bottom: 18px;
-            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
-            text-align: center;
-        }
-
-        .warning-banner {
-            background: #FEF2F2;
-            border: 1px solid #FEE2E2;
-            color: #991B1B;
-            padding: 14px;
-            border-radius: 16px;
-            font-size: 13.5px;
-            font-weight: 600;
-            margin-bottom: 18px;
-            text-align: right;
-            line-height: 1.6;
-        }
-
-        .circle-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
-        }
-
+        .circle-wrapper { display: flex; justify-content: center; align-items: center; margin: 20px 0; }
         .counter-circle {
-            width: 190px;
-            height: 190px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #FFFFFF 60%, #F8FAFC 100%);
-            border: 5px solid var(--gold-premium);
-            box-shadow: 0 10px 30px rgba(184, 148, 42, 0.15);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            width: 190px; height: 190px; border-radius: 50%; background: radial-gradient(circle, #FFFFFF 60%, #F8FAFC 100%);
+            border: 5px solid var(--gold-premium); box-shadow: 0 10px 30px rgba(184, 148, 42, 0.15);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
         }
+        .counter-number { font-size: 65px; font-weight: 900; color: var(--text-dark); line-height: 1; }
+        .counter-text-inside { font-size: 12px; color: var(--gold-premium); font-weight: 700; margin-top: 4px; }
 
-        .counter-number {
-            font-size: 65px;
-            font-weight: 900;
-            color: var(--text-dark);
-            line-height: 1;
-        }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+        .stat-item-box { background: #F8FAFC; padding: 12px; border-radius: 14px; border: 1px solid #E2E8F0; text-align: center; }
+        .stat-item-title { font-size: 11.5px; color: var(--text-muted); margin-bottom: 3px; }
+        .stat-item-value { font-size: 16.5px; font-weight: 700; color: var(--text-dark); }
 
-        .counter-text-inside {
-            font-size: 12px;
-            color: var(--gold-premium);
-            font-weight: 700;
-            margin-top: 4px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 18px;
-        }
-
-        .stat-item-box {
-            background: #F8FAFC;
-            padding: 12px;
-            border-radius: 14px;
-            border: 1px solid #E2E8F0;
-            text-align: center;
-        }
-
-        .stat-item-title {
-            font-size: 11.5px;
-            color: var(--text-muted);
-            margin-bottom: 3px;
-        }
-
-        .stat-item-value {
-            font-size: 16.5px;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        .verse-box {
-            background: #F8FAFC;
-            padding: 18px;
-            border-radius: 16px;
-            border-right: 4px solid var(--gold-premium);
-            margin: 18px 0;
-        }
-
-        .verse-text {
-            font-weight: 700;
-            color: var(--gold-premium);
-            margin-bottom: 6px;
-            font-size: 15px;
-            text-align: center;
-        }
+        .verse-box { background: #F8FAFC; padding: 18px; border-radius: 16px; border-right: 4px solid var(--gold-premium); margin: 18px 0; }
+        .verse-text { font-weight: 700; color: var(--gold-premium); margin-bottom: 6px; font-size: 15px; text-align: center; }
 
         .btn {
-            background: linear-gradient(135deg, #B8942A 0%, #91721F 100%);
-            color: #FFFFFF;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-size: 14.5px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 12px rgba(184, 148, 42, 0.15);
+            background: linear-gradient(135deg, #B8942A 0%, #91721F 100%); color: #FFFFFF; border: none;
+            padding: 12px 20px; border-radius: 12px; font-size: 14.5px; font-weight: 700; cursor: pointer; width: 100%;
+            transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(184, 148, 42, 0.15);
         }
+        .btn:active { transform: scale(0.98); }
+        .btn:disabled { background: var(--disabled-btn); color: var(--text-muted); cursor: not-allowed; box-shadow: none; transform: none; }
+        .btn-danger { background: #FEE2E2; color: var(--danger-premium); border: 1px solid #FCA5A5; box-shadow: none; margin-top: 12px; padding: 10px 18px; font-size: 13.5px; }
 
-        .btn:active {
-            transform: scale(0.98);
-        }
+        .invite-box { background: #F8FAFC; border: 1px dashed var(--gold-premium); padding: 15px; border-radius: 14px; text-align: right; display: flex; flex-direction: column; gap: 10px; }
+        .code-row { display: flex; justify-content: space-between; align-items: center; background: #FFF; padding: 8px 12px; border-radius: 8px; border: 1px solid #E2E8F0; }
 
-        .btn:disabled {
-            background: var(--disabled-btn);
-            color: var(--text-muted);
-            cursor: not-allowed;
-            box-shadow: none;
-            transform: none;
-        }
-
-        .btn-danger {
-            background: #FEE2E2;
-            color: var(--danger-premium);
-            border: 1px solid #FCA5A5;
-            box-shadow: none;
-            margin-top: 12px;
-            padding: 10px 18px;
-            font-size: 13.5px;
-        }
-
-        .invite-box {
-            background: #F8FAFC;
-            border: 1px dashed var(--gold-premium);
-            padding: 15px;
-            border-radius: 14px;
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .code-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #FFF;
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 1px solid #E2E8F0;
-        }
-
-        .leaderboard-list {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        .leaderboard-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 14px 16px;
-            background: #F8FAFC;
-            margin-bottom: 10px;
-            border-radius: 14px;
-            align-items: center;
-            border: 1px solid #E2E8F0;
-        }
-
-        .leaderboard-item.me {
-            background-color: #FFFDF5;
-            border: 1px solid var(--gold-premium);
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .rank {
-            background: #E2E8F0;
-            color: var(--text-dark);
-            width: 26px;
-            height: 26px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .days-badge {
-            background: #E2E8F0;
-            padding: 5px 12px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 13px;
-            color: var(--gold-premium);
-        }
-
-        .me .days-badge {
-            background: var(--gold-premium);
-            color: #FFFFFF;
-        }
+        .leaderboard-list { list-style: none; margin-top: 15px; }
+        .leaderboard-item { display: flex; justify-content: space-between; padding: 14px 16px; background: #F8FAFC; margin-bottom: 10px; border-radius: 14px; align-items: center; border: 1px solid #E2E8F0; }
+        .leaderboard-item.me { background-color: #FFFDF5; border: 1px solid var(--gold-premium); }
+        .user-info { display: flex; align-items: center; gap: 10px; }
+        .rank { background: #E2E8F0; color: var(--text-dark); width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 12px; font-weight: 700; }
+        .days-badge { background: #E2E8F0; padding: 5px 12px; border-radius: 10px; font-weight: 700; font-size: 13px; color: var(--gold-premium); }
+        .me .days-badge { background: var(--gold-premium); color: #FFFFFF; }
     </style>
 </head>
 <body>
 
-    <!-- شاشة تسجيل الدخول والعهد -->
     <div id="auth-screen">
         <div class="auth-card">
             <div class="auth-logo">🕌</div>
@@ -391,13 +144,13 @@
             <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 25px;">«وَأَوْفُوا بِالْعَهْدِ إِنَّ الْعَهْدَ كَانَ مَسْؤُولًا»</p>
             
             <div class="input-group">
-                <label>الاسم المستعار للحساب:</label>
-                <input type="text" id="username" placeholder="مثال: التائب_إلى_الله">
+                <label>الاسم أو اللقب الصريح (ليظهر لصديقك):</label>
+                <input type="text" id="username" placeholder="مثال: نواف">
             </div>
             
             <div class="input-group">
                 <label>رقم سري خاص بك:</label>
-                <input type="password" id="password" placeholder="أدخل كلمة المرور لتأمين حسابك">
+                <input type="password" id="password" placeholder="أدخل كلمة مرور لحسابك">
             </div>
             
             <button class="btn" onclick="login()">الدخول وتوثيق العهد</button>
@@ -423,17 +176,14 @@
 
     <div class="main-container">
 
-        <!-- 1. واجهة العهد والعداد -->
         <div id="screen-home" class="screen active">
-            
             <div class="warning-banner">
                 🛑 <strong>مقام المراقبة الجليل:</strong> <br>
-                تذكّر دائماً قبل الضعف، أنك نقشت ميثاقاً غليظاً مع ملك الملوك؛ غلقت الأبواب أم لم تغلقها، فالمطلع عليك هو الله العظيم، فلا تخذل نفسك ولا تهتك عهدك.
+                تذكّر دائماً قبل الضعف، أنك نقشت ميثاقاً غليظاً مع ملك الملوك؛ غلقت الأبواب أم لم تغلقها، فالمطلع عليك هو الله العظيم.
             </div>
 
             <div class="card">
                 <h3 style="font-weight: 700; font-size: 15px; color: var(--text-dark); margin-bottom: 5px;">المؤشر الزمني للثبات والعفة</h3>
-                
                 <div class="circle-wrapper">
                     <div class="counter-circle">
                         <div class="counter-number" id="days-count">0</div>
@@ -462,92 +212,88 @@
                 <button class="btn" id="action-btn" onclick="claimDay()">➕ مر يوم آخر وأنا على عهدي</button>
                 <button class="btn btn-danger" onclick="resetCounter()">⚠️ نقضت العهد (تصفير العداد واستغفار)</button>
             </div>
-
-            <div class="verse-box">
-                <div class="verse-text">﴿أَلَمْ يَعْلَم بِأَنَّ اللَّهَ يَرَىٰ﴾</div>
-                <p style="color: var(--text-muted); text-align: center; font-size: 13.5px;">لو استشعرت هذه الآية في خلوتك، لذابت الشهوة الحرام خوفاً وحياءً من الخالق سبحانه.</p>
-            </div>
         </div>
 
-        <!-- 2. واجهة التنافس المحدثة برمز الدعوة ومشاركته -->
         <div id="screen-competition" class="screen">
             <div class="card">
-                <h3 style="text-align: right; font-size: 16px; margin-bottom: 12px; color: var(--text-dark);">مشاركة وتحدي الأصدقاء</h3>
+                <h3 style="text-align: right; font-size: 16px; margin-bottom: 12px; color: var(--text-dark);">مشاركة وتحدي الأصدقاء عبر الإنترنت</h3>
                 
                 <div class="invite-box">
-                    <div>📢 كودك الخاص بك (شاركه مع أصدقائك):</div>
+                    <div>📢 كودك الشخصي (أرسله لصديقك):</div>
                     <div class="code-row">
-                        <strong id="my-invite-code" style="color: var(--gold-premium); font-size: 16px; letter-spacing: 1px;">جاري التوليد...</strong>
+                        <strong id="my-invite-code" style="color: var(--gold-premium); font-size: 16px;">...</strong>
                         <button class="btn" style="width: auto; padding: 4px 12px; font-size: 12px;" onclick="copyCode()">نسخ الكود</button>
                     </div>
                 </div>
 
                 <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 20px 0;">
 
-                <h3 style="text-align: right; font-size: 15px; margin-bottom: 10px; color: var(--text-dark);">الانضمام لمجموعة صديقك</h3>
+                <h3 style="text-align: right; font-size: 15px; margin-bottom: 10px; color: var(--text-dark);">ربط ومتابعة صديقك لايف</h3>
                 <div class="input-group" style="display: flex; gap: 8px; margin-bottom: 0;">
-                    <input type="text" id="invite-code-input" placeholder="أدخل كود صديقك">
-                    <button class="btn" style="width: auto; white-space: nowrap; padding: 10px 16px;" onclick="joinGroup()">انضمام</button>
+                    <input type="text" id="invite-code-input" placeholder="أدخل كود صديقك هنا">
+                    <button class="btn" style="width: auto; white-space: nowrap; padding: 10px 16px;" onclick="joinGroup()">ربط</button>
                 </div>
                 
                 <div style="text-align: right; font-size: 12px; color: var(--text-muted); margin-top: 8px;" id="joined-group-status">
-                    المجموعة الحالية: لم تنضم لكود خارجي بعد (تعرض قائمة صدارتك الخاصة).
+                    أدخل كود صديقك لتظهروا معاً في لوحة صدارة مشتركة ومباشرة.
                 </div>
             </div>
 
             <div class="card">
-                <h3 style="text-align: right; font-size: 16px; margin-bottom: 3px; color: var(--gold-premium);">لوحة صدارة الطهارة</h3>
-                <p style="text-align: right; color: var(--text-muted); font-size: 12.5px; margin-bottom: 12px;">«وَفِي ذَٰلِكَ فَلْيَتَنَافَسِ الْمُتَنَافِسُونَ»</p>
+                <h3 style="text-align: right; font-size: 16px; margin-bottom: 3px; color: var(--gold-premium);">لوحة صدارة الطهارة (مباشر 🌐)</h3>
+                <p style="text-align: right; color: var(--text-muted); font-size: 12.5px; margin-bottom: 12px;">تتحدث تلقائياً بمجرد ضغط أي منكما على العداد</p>
                 <ul class="leaderboard-list" id="leaderboard-ui">
-                    <!-- تظهر البيانات ديناميكياً هنا -->
+                    <div style="color:var(--text-muted); padding:10px;">في انتظار البيانات السحابية...</div>
                 </ul>
             </div>
         </div>
 
-        <!-- 3. واجهة حسابي -->
         <div id="screen-profile" class="screen">
             <div class="card">
                 <div style="font-size: 40px; margin-bottom: 8px; color: var(--gold-premium);">👑</div>
                 <h2 class="current-user-name" style="font-weight: 900; color: var(--text-dark); font-size: 20px;">المستمسك بالعهد</h2>
-                
-                <div style="text-align: right; background: #F8FAFC; padding: 18px; border-radius: 16px; margin: 18px 0; border: 1px solid #E2E8F0;">
-                    <p style="margin-bottom: 10px; font-size: 14.5px;">🕋 العهد المبرم: <span style="color: #16A34A; font-weight: bold;">قائم ونقي بإذن الله</span></p>
-                    <p style="font-size: 14px;">🔒 أمان وخصوصية البيانات: <span style="color: var(--text-muted);">مشفرة ومحفوظة محلياً في جهازك</span></p>
-                </div>
-
-                <button class="btn" style="background: #64748B; color: #fff; box-shadow: none; font-size: 13.5px; padding: 10px 20px;" onclick="logout()">تسجيل خروج آمن</button>
+                <button class="btn" style="background: #64748B; color: #fff; box-shadow: none; font-size: 13.5px; padding: 10px 20px; margin-top:15px;" onclick="logout()">تسجيل خروج آمن</button>
             </div>
         </div>
 
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
     <script>
+        // إعدادات قاعدة البيانات السحابية العامة المفتوحة للتجربة الفورية
+        const firebaseConfig = {
+            databaseURL: "https://tahadi-alahed-default-rtdb.firebaseio.com/"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
         let currentUser = null;
-        let joinedGroupCode = "";
+        let joinedFriendCode = "";
         let timerInterval = null;
 
-        // دالة مسؤولة عن توليد كود عشوائي للمستخدم الجديد عند التسجيل
-        function generateRandomCode(name) {
-            const cleanName = name.replace(/[^a-zA-Z0-9آ-ي]/g, '').substring(0, 5).toUpperCase();
-            const randomNum = Math.floor(100 + Math.random() * 900);
-            return `${cleanName}-${randomNum}`;
+        function generateId(name) {
+            const clean = name.replace(/[^a-zA-Z0-9آ-ي]/g, '').substring(0, 4).toUpperCase();
+            return clean + "-" + Math.floor(100 + Math.random() * 900);
         }
 
         function initApp() {
             const savedUser = localStorage.getItem('activeUser');
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
-                joinedGroupCode = localStorage.getItem('joinedGroupCode') || "";
+                joinedFriendCode = localStorage.getItem('joinedFriendCode') || "";
                 
-                // التأكد من وجود كود خاص بالمستخدم، وإلا يتم توليده فوراً
-                if (!currentUser.myInviteCode) {
-                    currentUser.myInviteCode = generateRandomCode(currentUser.name);
+                if(!currentUser.myInviteCode) {
+                    currentUser.myInviteCode = generateId(currentUser.name);
                     localStorage.setItem('activeUser', JSON.stringify(currentUser));
                 }
 
                 document.querySelectorAll('.current-user-name').forEach(el => el.innerText = currentUser.name);
                 document.getElementById('auth-screen').style.display = 'none';
-                updateUI();
+                
+                // رفع البيانات السحابية وتفعيل الاستماع اللحظي
+                syncWithCloud();
                 startLockTimerCheck();
             }
         }
@@ -555,114 +301,112 @@
         function login() {
             const name = document.getElementById('username').value.trim();
             const pass = document.getElementById('password').value.trim();
-            
-            if(!name || !pass) {
-                alert("الرجاء إدخال الاسم الرمزي وكلمة المرور لتوثيق ميثاقك.");
-                return;
-            }
+            if(!name || !pass) { alert("أدخل اسمك والرقم السري أولاً."); return; }
 
-            // توليد كود الدعوة للمستخدم وحفظه مع بياناته
-            const myInviteCode = generateRandomCode(name);
-
-            currentUser = { 
-                name: name, 
-                days: 0, 
-                maxDays: 0, 
-                relapses: 0, 
-                lastClaimTime: null,
-                myInviteCode: myInviteCode
-            };
+            const code = generateId(name);
+            currentUser = { name: name, pass: pass, days: 0, maxDays: 0, relapses: 0, lastClaimTime: null, myInviteCode: code };
             
             localStorage.setItem('activeUser', JSON.stringify(currentUser));
             document.querySelectorAll('.current-user-name').forEach(el => el.innerText = name);
             document.getElementById('auth-screen').style.display = 'none';
-            updateUI();
+            
+            syncWithCloud();
         }
 
-        function copyCode() {
-            if (!currentUser || !currentUser.myInviteCode) return;
-            navigator.clipboard.writeText(currentUser.myInviteCode);
-            alert(`تم نسخ كود الدعوة الخاص بك بنجاح: ${currentUser.myInviteCode}\nأرسله الآن لأصحابك لمنافستهم!`);
+        function syncWithCloud() {
+            if(!currentUser) return;
+            // حفظ بياناتي في السحابة تحت كودي الشخصي لكي يراها صديقي
+            db.ref('users/' + currentUser.myInviteCode).set({
+                name: currentUser.name,
+                days: currentUser.days,
+                maxDays: currentUser.maxDays,
+                relapses: currentUser.relapses,
+                code: currentUser.myInviteCode
+            });
+
+            updateUI();
+            listenToLeaderboard();
+        }
+
+        function listenToLeaderboard() {
+            // الاستماع اللحظي للسحابة: أي تعديل عند صديقك يظهر عندك فوراً بدون تحديث الصفحة!
+            db.ref('users').on('value', (snapshot) => {
+                const usersData = snapshot.val() || {};
+                let list = [];
+                
+                // إدراج بياناتي
+                list.push({ name: currentUser.name, days: currentUser.days, isMe: true });
+                
+                // إذا كنت رابطاً مع صديق، ابحث عن بياناته واعرضها
+                if(joinedFriendCode && usersData[joinedFriendCode]) {
+                    const friend = usersData[joinedFriendCode];
+                    list.push({ name: friend.name, days: friend.days, isMe: false });
+                }
+
+                // ترتيب الصدارة حسب الأيام تنازلياً
+                list.sort((a, b) => b.days - a.days);
+
+                const container = document.getElementById('leaderboard-ui');
+                container.innerHTML = "";
+                list.forEach((u, i) => {
+                    const li = document.createElement('li');
+                    li.className = `leaderboard-item ${u.isMe ? 'me' : ''}`;
+                    li.innerHTML = `
+                        <div class="user-info">
+                            <span class="rank">${i + 1}</span>
+                            <span style="font-weight:bold;">${u.name} ${u.isMe ? '(أنت)' : '(صديقك)'}</span>
+                        </div>
+                        <span class="days-badge">${u.days} يوم ثبات</span>
+                    `;
+                    container.appendChild(li);
+                });
+            });
         }
 
         function joinGroup() {
             const code = document.getElementById('invite-code-input').value.trim().toUpperCase();
             if(!code) return;
-            
-            if(code === currentUser.myInviteCode) {
-                alert("هذا كودك الشخصي! لا يمكنك الانضمام لكودك الخاص، أرسله لأصدقائك لينضموا هم إليك.");
-                return;
-            }
+            if(code === currentUser.myInviteCode) { alert("هذا كودك الشخصي!"); return; }
 
-            joinedGroupCode = code;
-            localStorage.setItem('joinedGroupCode', joinedGroupCode);
-            alert(`تم الانضمام بنجاح لمجموعة الصديق: ${joinedGroupCode}`);
-            document.getElementById('invite-code-input').value = "";
-            saveAndRefresh();
+            // التحقق من وجود الصديق في قاعدة البيانات السحابية
+            db.ref('users/' + code).once('value', (snapshot) => {
+                if(snapshot.exists()) {
+                    joinedFriendCode = code;
+                    localStorage.setItem('joinedFriendCode', joinedFriendCode);
+                    alert(`تم الربط بنجاح مع: ${snapshot.val().name}`);
+                    document.getElementById('invite-code-input').value = "";
+                    syncWithCloud();
+                } else {
+                    alert("عذراً، كود الصديق غير صحيح أو لم يقم بالتسجيل بعد.");
+                }
+            });
+        }
+
+        function copyCode() {
+            navigator.clipboard.writeText(currentUser.myInviteCode);
+            alert(`تم نسخ كودك: ${currentUser.myInviteCode}\nأرسله لصديقك الآن!`);
         }
 
         function claimDay() {
-            const now = Date.now();
             currentUser.days += 1;
-            if (currentUser.days > currentUser.maxDays) {
-                currentUser.maxDays = currentUser.days;
-            }
-            currentUser.lastClaimTime = now;
+            if(currentUser.days > currentUser.maxDays) currentUser.maxDays = currentUser.days;
+            currentUser.lastClaimTime = Date.now();
             
-            saveAndRefresh();
+            localStorage.setItem('activeUser', JSON.stringify(currentUser));
+            syncWithCloud();
             startLockTimerCheck();
         }
 
-        function startLockTimerCheck() {
-            if (timerInterval) clearInterval(timerInterval);
-            const btn = document.getElementById('action-btn');
-            
-            if (!currentUser || !currentUser.lastClaimTime) {
-                btn.disabled = false;
-                btn.innerText = "➕ مر يوم آخر وأنا على عهدي";
-                return;
-            }
-
-            function updateTimer() {
-                const now = Date.now();
-                const passedTime = now - currentUser.lastClaimTime;
-                const oneDayInMs = 24 * 60 * 60 * 1000;
-                
-                if (passedTime >= oneDayInMs) {
-                    btn.disabled = false;
-                    btn.innerText = "➕ مر يوم آخر وأنا على عهدي";
-                    clearInterval(timerInterval);
-                } else {
-                    const timeLeft = oneDayInMs - passedTime;
-                    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                    
-                    btn.disabled = true;
-                    btn.innerText = `🔒 تم حفظ عهد اليوم (متبقي: ${hours}س و${minutes}د و${seconds}ث)`;
-                }
-            }
-
-            updateTimer();
-            timerInterval = setInterval(updateTimer, 1000);
-        }
-
         function resetCounter() {
-            if(confirm("هل انكسرت الإرادة ونُقض العهد العظيم مع الله في الخفاء؟ قف فوراً على قدميك وتُب واستغفر.. العداد سيعود للصفر تأديباً للنفس. هل أنت متأكد؟")) {
+            if(confirm("هل أنت متأكد من تصفير العداد؟ سيعرف صديقك تلقائياً في لوحة الصدارة.")) {
                 currentUser.days = 0;
                 currentUser.relapses += 1;
                 currentUser.lastClaimTime = null;
-                if (timerInterval) clearInterval(timerInterval);
                 
-                saveAndRefresh();
+                localStorage.setItem('activeUser', JSON.stringify(currentUser));
+                syncWithCloud();
                 startLockTimerCheck();
-                switchScreen('home');
             }
-        }
-
-        function saveAndRefresh() {
-            localStorage.setItem('activeUser', JSON.stringify(currentUser));
-            updateUI();
         }
 
         function updateUI() {
@@ -670,62 +414,40 @@
             document.getElementById('stats-current-days').innerText = currentUser.days + " يوم";
             document.getElementById('stats-best-record').innerText = currentUser.maxDays + " يوم";
             document.getElementById('stats-relapses').innerText = currentUser.relapses;
-            
-            if (currentUser && currentUser.myInviteCode) {
-                document.getElementById('my-invite-code').innerText = currentUser.myInviteCode;
-            }
+            document.getElementById('my-invite-code').innerText = currentUser.myInviteCode;
 
-            if(joinedGroupCode) {
-                document.getElementById('joined-group-status').innerText = `المجموعة الحالية المشترك بها: ${joinedGroupCode}`;
-            } else {
-                document.getElementById('joined-group-status').innerText = "المجموعة الحالية: قائمة صدارتك الشخصية الحالية.";
+            if(joinedFriendCode) {
+                document.getElementById('joined-group-status').innerText = `متصل حالياً ومربوط مع الكود: ${joinedFriendCode}`;
             }
-
-            renderLeaderboard();
         }
 
-        function renderLeaderboard() {
-            const listContainer = document.getElementById('leaderboard-ui');
-            let mockNetworkUsers = [{ name: currentUser.name, days: currentUser.days, isMe: true }];
+        function startLockTimerCheck() {
+            if (timerInterval) clearInterval(timerInterval);
+            const btn = document.getElementById('action-btn');
+            if (!currentUser || !currentUser.lastClaimTime) { btn.disabled = false; return; }
 
-            // إذا أدخل المستخدم كود صديق معين (كمثال محاكاة)
-            if(joinedGroupCode !== "") {
-                mockNetworkUsers.push({ name: "صديقك الملتزم", days: Math.max(1, currentUser.days + 2), isMe: false });
-                mockNetworkUsers.push({ name: "مبادر بالخير", days: Math.max(0, currentUser.days - 1), isMe: false });
+            function updateTimer() {
+                const passed = Date.now() - currentUser.lastClaimTime;
+                const oneDay = 24 * 60 * 60 * 1000;
+                if (passed >= oneDay) {
+                    btn.disabled = false; btn.innerText = "➕ مر يوم آخر وأنا على عهدي"; clearInterval(timerInterval);
+                } else {
+                    const diff = oneDay - passed;
+                    const h = Math.floor(diff / (3600000)), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
+                    btn.disabled = true; btn.innerText = `🔒 تم حفظ اليوم (متبقي: ${h}س و${m}د و${s}ث)`;
+                }
             }
-
-            mockNetworkUsers.sort((a, b) => b.days - a.days);
-            listContainer.innerHTML = "";
-            mockNetworkUsers.forEach((user, index) => {
-                const item = document.createElement('li');
-                item.className = `leaderboard-item ${user.isMe ? 'me' : ''}`;
-                item.innerHTML = `
-                    <div class="user-info">
-                        <span class="rank">${index + 1}</span>
-                        <span style="font-weight: bold;">${user.name} ${user.isMe ? '(أنت)' : ''}</span>
-                    </div>
-                    <span class="days-badge">${user.days} يوم ثبات</span>
-                `;
-                listContainer.appendChild(item);
-            });
+            updateTimer(); timerInterval = setInterval(updateTimer, 1000);
         }
 
-        function switchScreen(screenName) {
+        function switchScreen(name) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-            document.getElementById('screen-' + screenName).classList.add('active');
-            document.getElementById('nav-' + screenName).classList.add('active');
-            window.scrollTo(0, 0);
+            document.getElementById('screen-' + name).classList.add('active');
+            document.getElementById('nav-' + name).classList.add('active');
         }
 
-        function logout() {
-            if (timerInterval) clearInterval(timerInterval);
-            localStorage.clear();
-            currentUser = null;
-            joinedGroupCode = "";
-            document.getElementById('auth-screen').style.display = 'flex';
-            switchScreen('home');
-        }
+        function logout() { localStorage.clear(); location.reload(); }
 
         window.onload = initApp;
     </script>
