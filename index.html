@@ -3,335 +3,380 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة العهد | الثبات العظيم</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    
+    <title>منصة المراجعة الشاملة للاختبار الكبير 🧪</title>
     <style>
         :root {
-            /* درجات النمط الداكن الهادئ والمريح للعين */
-            --bg-dark: #0F172A; /* رمادي داكن مائل للأزرق */
-            --card-dark: #1E293B; /* لون الكروت أخف قليلاً ليعطي عمقاً */
-            --gold-premium: #D9B44A; /* ذهبي مضيء يتناسب مع الخلفية الداكنة */
-            --gold-muted: #334155;
-            --danger-premium: #EF4444; /* أحمر هادئ غير مزعج */
-            --danger-bg: #451A1A;
-            --text-light: #F8FAFC; /* نص أساسي ناصع */
-            --text-muted: #94A3B8; /* نص ثانوي مريح للعين */
-            --disabled-btn: #334155;
-            --input-bg: #1E293B;
-            --border-color: rgba(217, 180, 74, 0.15);
-        }
-
-        * {
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
+            --primary-color: #00796b;
+            --secondary-color: #004d40;
+            --background-color: #f4f7f6;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --success-color: #2e7d32;
+            --error-color: #c62828;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 15px;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        #auth-screen {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--bg-dark);
-            display: flex;
-            justify-content: center;
             align-items: center;
-            z-index: 1000;
-            padding: 20px;
         }
 
-        .auth-card {
-            background: var(--card-dark);
-            padding: 35px 25px;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        .container {
+            max-width: 850px;
             width: 100%;
-            max-width: 400px;
-            text-align: center;
-            border: 1px solid var(--border-color);
+            background: var(--card-background);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            box-sizing: border-box;
         }
-
-        .auth-logo { font-size: 50px; margin-bottom: 10px; color: var(--gold-premium); }
-
-        .input-group { margin-bottom: 18px; text-align: right; }
-        .input-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 14px; color: var(--text-light); }
-        .input-group input {
-            width: 100%; padding: 14px 16px; border: 1.5px solid #334155; border-radius: 12px;
-            font-size: 15px; text-align: right; transition: all 0.3s; background: var(--bg-dark); color: var(--text-light);
-        }
-        .input-group input:focus { outline: none; border-color: var(--gold-premium); background: var(--card-dark); }
 
         header {
-            background: linear-gradient(180deg, #1E293B 0%, var(--bg-dark) 100%);
-            color: var(--text-light); padding: 25px 20px; text-align: center; font-size: 19px; font-weight: 700;
-            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 12px;
         }
 
-        nav {
-            display: flex; background: var(--card-dark); border-top: 1px solid rgba(255, 255, 255, 0.05);
-            position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; border-top-left-radius: 20px;
-            border-top-right-radius: 20px; padding: 8px 0; box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.2);
+        header h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 24px;
         }
-        nav button {
-            flex: 1; padding: 6px 0; border: none; background: none; font-size: 12px; font-weight: 600;
-            color: var(--text-muted); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;
-            transition: color 0.2s;
+
+        header p {
+            color: #666;
+            margin: 6px 0 0 0;
+            font-size: 14px;
         }
-        nav button .icon { font-size: 20px; color: var(--text-muted); transition: color 0.2s; }
-        nav button.active { color: var(--gold-premium); }
-        nav button.active .icon { color: var(--gold-premium); }
 
-        .main-container { padding: 20px 16px 110px 16px; max-width: 450px; margin: 0 auto; width: 100%; }
-        .screen { display: none; }
-        .screen.active { display: block; animation: fadeIn 0.35s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-
-        .card { background: var(--card-dark); border-radius: 24px; padding: 25px 20px; margin-bottom: 18px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); text-align: center; border: 1px solid rgba(255, 255, 255, 0.03); }
-        .warning-banner { background: #1A1212; border: 1px solid #7F1D1D; color: #FCA5A5; padding: 14px; border-radius: 16px; font-size: 13.5px; font-weight: 600; margin-bottom: 18px; text-align: right; line-height: 1.6; }
-
-        .circle-wrapper { display: flex; justify-content: center; align-items: center; margin: 20px 0; }
-        .counter-circle {
-            width: 190px; height: 190px; border-radius: 50%; background: radial-gradient(circle, #1E293B 60%, #0F172A 100%);
-            border: 5px solid var(--gold-premium); box-shadow: 0 10px 30px rgba(217, 180, 74, 0.1);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            background: #e0f2f1;
+            padding: 12px 18px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 15px;
         }
-        .counter-number { font-size: 65px; font-weight: 900; color: var(--text-light); line-height: 1; }
-        .counter-text-inside { font-size: 12px; color: var(--gold-premium); font-weight: 700; margin-top: 4px; }
 
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
-        .stat-item-box { background: #131D31; padding: 12px; border-radius: 14px; border: 1px solid #334155; text-align: center; }
-        .stat-item-title { font-size: 11.5px; color: var(--text-muted); margin-bottom: 3px; }
-        .stat-item-value { font-size: 16.5px; font-weight: 700; color: var(--text-light); }
-
-        .btn {
-            background: linear-gradient(135deg, #D9B44A 0%, #A1812B 100%); color: #0F172A; border: none;
-            padding: 14px 20px; border-radius: 14px; font-size: 15px; font-weight: 700; cursor: pointer; width: 100%;
-            transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(217, 180, 74, 0.15);
+        .question-card {
+            display: none;
         }
-        .btn:active { transform: scale(0.98); }
-        .btn:disabled { background: var(--disabled-btn); color: var(--text-muted); cursor: not-allowed; box-shadow: none; transform: none; }
-        .btn-danger { background: var(--danger-bg); color: #FCA5A5; border: 1px solid #991B1B; box-shadow: none; margin-top: 12px; padding: 12px 18px; font-size: 13.5px; }
+
+        .question-card.active {
+            display: block;
+        }
+
+        .question-text {
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #111;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .option-btn {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: right;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #333;
+        }
+
+        .option-btn:hover {
+            background: #e2e6ea;
+            border-color: #dae0e5;
+        }
+
+        .option-btn.correct {
+            background-color: #d4edda !important;
+            border-color: #c3e6cb !important;
+            color: var(--success-color) !important;
+            font-weight: bold;
+        }
+
+        .option-btn.wrong {
+            background-color: #f8d7da !important;
+            border-color: #f5c6cb !important;
+            color: var(--error-color) !important;
+        }
+
+        .navigation-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 11px 28px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .nav-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        #result-card {
+            text-align: center;
+            display: none;
+            padding: 30px 10px;
+        }
+
+        .score-text {
+            font-size: 26px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 25px 0;
+        }
     </style>
 </head>
 <body>
 
-    <div id="auth-screen">
-        <div class="auth-card">
-            <div class="auth-logo">🕌</div>
-            <h2 style="font-weight: 900; margin-bottom: 5px; color: var(--text-light);">ميثاق العهد الفاخر</h2>
-            <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 25px;">«وَأَوْفُوا بِالْعَهْدِ إِنَّ الْعَهْدَ كَانَ مَسْؤُولًا»</p>
-            
-            <div class="input-group">
-                <label>الاسم أو اللقب الصريح:</label>
-                <input type="text" id="username" placeholder="مثال: نواف">
-            </div>
-            
-            <button class="btn" onclick="login()">الدخول وتوثيق العهد</button>
-        </div>
+<div class="container">
+    <header>
+        <h1>🧪 الموقع الشامل لمراجعة اختبار الكيمياء</h1>
+  
+    </header>
+
+    <div class="stats-bar">
+        <span id="page-indicator">جاري تحميل الأسئلة...</span>
+        <span id="score-live">النقاط: 0</span>
     </div>
 
-    <header>🕌 ميثاق الثبات والوفاء بالعهد مع الله</header>
-
-    <nav>
-        <button id="nav-home" class="active" onclick="switchScreen('home')">
-            <span class="icon">📖</span>
-            <span>العهد والعداد</span>
-        </button>
-        <button id="nav-profile" onclick="switchScreen('profile')">
-            <span class="icon">👤</span>
-            <span>حسابي</span>
-        </button>
-    </nav>
-
-    <div class="main-container">
-
-        <div id="screen-home" class="screen active">
-            <div class="warning-banner">
-                🛑 <strong>مقام المراقبة الجليل:</strong> <br>
-                تذكّر دائماً قبل الضعف، أنك نقشت ميثاقاً غليظاً مع ملك الملوك؛ غلقت الأبواب أم لم تغلقها، فالمطلع عليك هو الله العظيم.
-            </div>
-
-            <div class="card">
-                <h3 style="font-weight: 700; font-size: 15px; color: var(--text-light); margin-bottom: 5px;">المؤشر الزمني للثبات والعفة</h3>
-                <div class="circle-wrapper">
-                    <div class="counter-circle">
-                        <div class="counter-number" id="days-count">0</div>
-                        <div class="counter-text-inside">أيام التوقف عنها</div>
-                    </div>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-item-box">
-                        <div class="stat-item-title">أيام الثبات الحالية</div>
-                        <div class="stat-item-value" id="stats-current-days">0 يوم</div>
-                    </div>
-                    <div class="stat-item-box">
-                        <div class="stat-item-title" style="color: var(--gold-premium);">أطول مدة ثبات للعهد</div>
-                        <div class="stat-item-value" id="stats-best-record" style="color: var(--gold-premium);">0 يوم</div>
-                    </div>
-                </div>
-
-                <div class="stats-grid" style="grid-template-columns: 1fr; margin-top: -8px; margin-bottom: 20px;">
-                    <div class="stat-item-box" style="border: 1px solid #991B1B; background: var(--danger-bg);">
-                        <div class="stat-item-title" style="color: #FCA5A5;">إجمالي المرات التي نقضت فيها العهد (الانتكاسات)</div>
-                        <div class="stat-item-value" id="stats-relapses" style="color: #FCA5A5;">0</div>
-                    </div>
-                </div>
-                
-                <button class="btn" id="action-btn" onclick="claimDay()">➕ مر يوم آخر وأنا على عهدي</button>
-                <button class="btn btn-danger" onclick="resetCounter()">⚠️ نقضت العهد (تصفير العداد واستغفار)</button>
-            </div>
+    <div id="quiz-container">
         </div>
 
-        <div id="screen-profile" class="screen">
-            <div class="card">
-                <div style="font-size: 40px; margin-bottom: 8px; color: var(--gold-premium);">👑</div>
-                <h2 class="current-user-name" style="font-weight: 900; color: var(--text-light); font-size: 20px;">المستمسك بالعهد</h2>
-                <button class="btn" style="background: #475569; color: #fff; box-shadow: none; font-size: 13.5px; padding: 10px 20px; margin-top:15px;" onclick="logout()">تسجيل خروج آمن</button>
-            </div>
-        </div>
-
+    <div class="navigation-box" id="nav-box">
+        <button class="nav-btn" id="prev-btn" onclick="changeQuestion(-1)" disabled>السابق</button>
+        <button class="nav-btn" id="next-btn" onclick="changeQuestion(1)">التالي</button>
     </div>
 
-    <script>
-        let currentUser = null;
-        let timerInterval = null;
+    <div id="result-card">
+        <h2>🏁 كفو يا مبدعين! تم إنهاء بنك الأسئلة بالكامل</h2>
+        <p>لقد راجعتم جميع الأوراق بنجاح وجاهزون للاختبار بإذن الله.</p>
+        <div class="score-text" id="score-display"></div>
+        <button class="nav-btn" onclick="restartQuiz()">إعادة الاختبار والمراجعة 🔄</button>
+    </div>
+</div>
 
-        function initApp() {
-            const savedUser = localStorage.getItem('activeUserLocal');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                document.querySelectorAll('.current-user-name').forEach(el => el.innerText = currentUser.name);
-                document.getElementById('auth-screen').style.display = 'none';
-                
-                updateUI();
-                startNewDayTimerCheck();
-            }
+<script>
+    // 
+    const quizData = [
+        // --- الورقة 1 و 2 ---
+        { q: "علم يقوم بدراسة المادة والتغيرات التي تطرأ عليها:", options: ["علم الأحياء", "علم الفيزياء", "علم الكيمياء", "علم الجيولوجيا"], correct: "علم الكيمياء" },
+        { q: "أي المواد التالية تسبب تآكل طبقة الأوزون وحمايتها في الغلاف الجوي؟", options: ["الأكسجين", "مركبات الكلوروفلوروكربون (CFCs)", "ثاني أكسيد الكربون", "النيتروجين"], correct: "مركبات الكلوروفلوروكربون (CFCs)" },
+        { q: "مقياس لكمية المادة وقوة جذب الأرض لها يسمى بـ:", options: ["الكتلة", "الحجم", "الوزن", "الكثافة"], correct: "الوزن" },
+        { q: "تفسير مرئي أو لفظي أو رياضي للبيانات التجريبية:", options: ["الفرضية", "النموذج", "النظرية", "القانون العلمي"], correct: "النموذج" },
+        { q: "تتميز مركبات CFCs بأنها مواد غير سامة ولا تتفاعل مباشرة مع المواد الأخرى.", options: ["صح", "خطأ"], correct: "صح" },
+        { q: "الكتلة تختلف من مكان إلى آخر بحسب الجاذبية الأرضية.", options: ["صح", "خطأ"], correct: "خطأ" },
+
+        // --- الورقة 3 و 4 ---
+        { q: "بحث يجري من أجل حل مشكلة محددة بذاتها:", options: ["البحث العلمي", "البحث النظري", "البحث التطبيقي", "البحث التجريبي"], correct: "البحث التطبيقي" },
+        { q: "حالة من حالات المادة لها شكل وحجم محددان وثابتان:", options: ["الحالة السائلة", "الحالة الصلبة", "الحالة الغازية", "البلازما"], correct: "الحالة الصلبة" },
+        { q: "خاصية يمكن ملاحظتها أو قياسها دون التغيير في تركيب العينة الأصلية:", options: ["الخاصية الكيميائية", "الخاصية الفيزيائية", "الخاصية الحيوية", "الخاصية النووية"], correct: "الخاصية الفيزيائية" },
+        { q: "أي الخواص التالية يعتبر خاصية كيميائية للمادة؟", options: ["اللون والخصائص البصرية", "درجة الغليان", "القدرة على الاتحاد مع الأكسجين والصدا", "الكثافة"], correct: "القدرة على الاتحاد مع الأكسجين والصدا" },
+        { q: "الغاز سائل في درجات الحرارة العادية ولكن يمكن ضغطه وتكثيفه.", options: ["صح", "خطأ"], correct: "خطأ" },
+        { q: "تغير حالة المادة من الصلب إلى السائل مباشرة يمثل تغيراً فيزيائياً.", options: ["صح", "خطأ"], correct: "صح" },
+
+        // --- الورقة 5 و 6 ---
+        { q: "قانون ينص على أن المادة لا تفنى ولا تستحدث في التفاعل الكيميائي بل تتحول من شكل لآخر:", options: ["قانون النسب الثابتة", "قانون حفظ الكتلة", "قانون النسب المتضاعفة", "قانون هس"], correct: "قانون حفظ الكتلة" },
+        { q: "مزيج مكون من مادتين نقيتين أو أكثر مع احتفاظ كل مادة بخواصها الأصلية:", options: ["المركب", "المخلوط", "العنصر", "المحلول الحقيقي"], correct: "المخلوط" },
+        { q: "طريقة تفصل بها مكونات الحبر أو الأصباغ بالاعتماد على قابليتها للتحرك على سطح مادة أخرى:", options: ["الترشيح", "التقطير", "البلورة", "الكروماتوجرافيا (التحليل الاستشرابي)"], correct: "الكروماتوجرافيا (التحليل الاستشرابي)" },
+        { q: "مادة نقية لا يمكن تجزئتها إلى مواد أصغر منها بطرق كيميائية أو فيزيائية:", options: ["العنصر", "المركب", "المخلوط المتجانس", "السبيكة"], correct: "العنصر" },
+        { q: "المخلوط غير المتجانس هو مخلوط له تركيب ثابت وتندمج مكوناته تماماً.", options: ["صح", "خطأ"], correct: "خطأ" },
+        { q: "يتكون المركب دائماً من عناصر مختلفة تتحد بنسب كتلية ثابتة.", options: ["صح", "خطأ"], correct: "صح" },
+
+        // --- الورقة 7 و 8 ---
+        { q: "أصغر جزء في العنصر يحمل صفاته وخواصه الكيميائية الفريدة:", options: ["الجزيء", "الذرة", "الأيون", "البروتون"], correct: "الذرة" },
+        { q: "أشعة تتكون من سيل من الجسيمات المشحونة بشحنة سالبة تنطلق من المهبط:", options: ["أشعة ألفا", "أشعة بيتا", "أشعة المهبط (الكاثود)", "أشعة جاما"], correct: "أشعة المهبط (الكاثود)" },
+        { q: "جسيمات ذرية توجد داخل النواة وتحمل شحنة موجبة تماماً وتساوي العدد الذري:", options: ["الإلكترونات", "البروتونات", "النيوترونات", "البوزيترونات"], correct: "البروتونات" },
+        { q: "ذرات لنفس العنصر تتشابه في عدد البروتونات وتختلف في عدد النيوترونات:", options: ["المتآصلات", "النظائر", "الأيونات", "العناصر الانتقالية"], correct: "النظائر" },
+        { q: "تتركز معظم كتلة الذرة في النواة الموجبة التي تقع في المركز.", options: ["صح", "خطأ"], correct: "صح" },
+        { q: "الإلكترونات جسيمات ثقيلة جداً تدور في مركز النواة.", options: ["صح", "خطأ"], correct: "خطأ" },
+
+        // --- الورقة 9 و 10 ---
+        { q: "مجموعة الخطوط الملونة المنفصلة الناتجة عن إثارة ذرات العنصر وتعتبر بصمة له:", options: ["طيف الامتصاص", "طيف الانبعاث الذري", "الأشعة فوق البنفسجية", "الضوء المرئي الشامل"], correct: "طيف الانبعاث الذري" },
+        { q: "العدد الذي يحدد الحجم النسبي وطاقة مستويات الطاقة الرئيسية في الذرة:", options: ["عدد الكم المغناطيسي", "عدد الكم الرئيسي (n)", "عدد الكم الفرعي", "عدد الكم المغزلي"], correct: "عدد الكم الرئيسي (n)" },
+        { q: "مبدأ ينص على أنه لا يمكن معرفة سرعة ومكان الإلكترون بدقة وفي نفس الوقت:", options: ["مبدأ أوفباو", "مبدأ هوند", "مبدأ الشك لهيزنبرج", "مبدأ استبعاد باولي"], correct: "مبدأ الشك لهيزنبرج" },
+        { q: "ينص مبدأ أوفباو (البناء التصاعدي) على أن كل إلكترون يشغل:", options: ["المستوى الأعلى طاقة أولاً", "المستوى الأقل طاقة المتاح أولاً", "المستويات بشكل عشوائي", "المدارات الخارجية فقط"], correct: "المستوى الأقل طاقة المتاح أولاً" },
+        { q: "الإلكترونات الموجودة في مستويات الطاقة الخارجية للذرة تسمى إلكترونات التكافؤ.", options: ["صح", "خطأ"], correct: "صح" },
+        { q: "يتسع مستوى الطاقة الرئيسي الثاني (n=2) في الذرة لعدد 18 إلكترون كحد أقصى.", options: ["صح", "خطأ"], correct: "خطأ" },
+
+        // --- الورقة 11 و 12 ---
+        { q: "رتب العالم موزلي عناصر الجدول الدوري تصاعدياً على أساس:", options: ["الكتلة الذرية", "العدد الذري", "عدد النيوترونات", "الوزن الذري"], correct: "العدد الذري" },
+        { q: "تسمى عناصر المجموعة 17 في الجدول الدوري الحديث بـ:", options: ["الفلزات القلوية الترابية", "الغازات النبيلة", "الهالوجينات", "العناصر الانتقالية"], correct: "الهالوجينات" },
+        { q: "الترتيب الإلكتروني لعنصر الصوديوم Na الذي عدده الذري 11 هو:", options: ["1s2 2s2 2p6 3s1", "1s2 2s2 2p5 3s2", "1s2 2s2 2p6", "1s2 2s2 2p4 3s2"], correct: "1s2 2s2 2p6 3s1" },
+        { q: "عناصر المجموعات من 3 إلى 12 في الجدول الدوري تسمى بالفلزات:", options: ["القلوية", "الترابية", "الانتقالية", "الممثلة"], correct: "الانتقالية" },
+        { q: "يقل نصف قطر الذرة (الحجم الذري) بشكل عام عند الانتقال من أعلى لأسفل في المجموعة الواحدة.", options: ["صح", "خطأ"], correct: "خطأ" },
+        { q: "العناصر النبيلة مستقرة كيميائياً بسبب امتلاء مستوياتها الخارجية بالكامل بالإلكترونات.", options: ["صح", "خطأ"], correct: "صح" },
+
+        // --- الورقة 13 و 14 ---
+        { q: "الطاقة اللازمة لانتزاع إلكترون من ذرة العنصر في الحالة الغازية:", options: ["الكهروسالبية", "طاقة التأين", "الألفية الإلكترونية", "طاقة الشبكة البلورية"], correct: "طاقة التأين" },
+        { q: "قوة الجذب التي تربط بين ذرتين أو أكثر وتنشأ نتيجة فقد أو كسب أو مشاركة الإلكترونات:", options: ["الرابطة الكيميائية", "الرابطة الهيدروجينية", "قوى تشتت فاندرفال", "الرابطة الفلزية"], correct: "الرابطة الكيميائية" },
+        { q: "أيون سالب يتكون عندما تكتسب الذرة اللافلزية إلكتروناً أو أكثر:", options: ["الكاتيون", "الأنيون", "النظير المشع", "الذرة المتعادلة"], correct: "الأنيون" },
+        { q: "المركبات الأيونية توصل التيار الكهربائي بحرية عالية جداً عندما تكون في حالة:", options: ["الصلابة فقط", "محلول أو مصهور سائل", "الغازية", "البلورات الجافة"], correct: "محلول أو مصهور سائل" },
+        { q: "تزداد طاقة الشبكة البلورية كلما كانت شحنات الأيونات أصغر وحجمها أكبر.", options: ["صح", "خطأ"], correct: "خطأ" },
+        { q: "الرابطة في مركب كلوريد الصوديوم (NaCl) هي رابطة أيونية قوية.", options: ["صح", "خطأ"], correct: "صح" },
+
+        // --- الورقة 15 و 16 ---
+        { q: "تتكون الرابطة الفلزية نتيجة قوى التجاذب بين الأيونات الموجبة للفلزات و:", options: ["الإلكترونات الحرة اللامركزية", "الأيونات السالبة المجاورة", "البروتونات داخل النواة", "الجزيئات القطبية الخارجي"], correct: "الإلكترونات الحرة اللامركزية" },
+        { q: "الرابطة التساهمية التي تنتج عن تشارك ذرتين بزوج واحد من الإلكترونات:", options: ["الرابطة الأحادية (سيجما)", "الرابطة الثنائية (باي)", "الرابطة الثلاثية", "الرابطة التناسقية"], correct: "الرابطة الأحادية (سيجما)" },
+        { q: "عند حدوث التفاعل وتكوين رابطة تساهمية متعددة، فإن الرابطة تتألف من رابطة سيجما واحدة ورابطة:", options: ["أيونية", "باي (π)", "فلزية", "تناسقية"], correct: "باي (π)" },
+        { q: "الاسم الصحيح للمركب التساهمي P2O5 بحسب قواعد التسمية هو:", options: ["أكسيد الفوسفور", "خامس أكسيد ثنائي الفوسفور", "ثاني أكسيد الفوسفور", "بيروكسيد الفوسفور"], correct: "خامس أكسيد ثنائي الفوسفور" },
+        { q: "تعتبر الفلزات قابلة للسحب والطرق بسبب حرية حركة الإلكترونات في شبكتها البلورية.", options: ["صح", "خطأ"], correct: "صح" },
+        { q: "طول الرابطة التساهمية الثلاثية يكون أطول وأضعف من الرابطة الأحادية.", options: ["صح", "خطأ"], correct: "خطأ" },
+
+        // --- الورقة 17 و 18 ---
+        { q: "الحالة التي تحدث عندما يكون هناك أكثر من تركيب لويس صحيح وشكلي للجزيء الواحد:", options: ["التهجين", "الرنين", "القطبية", "التماثل الفراغي"], correct: "الرنين" },
+        { q: "نوع التهجين في جزيء الميثان CH4 الذي يأخذ شكلاً رباعي الأوجه منتظم هو:", options: ["sp", "sp2", "sp3", "dsp2"], correct: "sp3" },
+        { q: "الرابطة التساهمية التي يكون فيها فرق الكهروسالبية بين الذرتين صفراً يطلق عليها:", options: ["رابطة تساهمية قطبية", "رابطة تساهمية نقية غير قطبية", "رابطة أيونية تامة", "رابطة فلزية موجهة"], correct: "رابطة تساهمية نقية غير قطبية" },
+        { q: "أي الجزيئات التالية يعتبر جزيئاً قطبياً بسبب شكله المنحني وغير المتناظر؟", options: ["CO2", "H2O", "CH4", "BF3"], correct: "H2O" },
+        { q: "تتكون الرابطة التساهمية التناسقية عندما تقدم إحدى الذرتين كلا الإلكترونين المشتركين للرابطة.", options: ["صح", "خطأ"], correct: "صح" },
+        { q: "شكل جزيء ثاني أكسيد الكربون (CO2) خطي وقطبيته عالية جداً.", options: ["صح", "خطأ"], correct: "خطأ" },
+
+        // --- الورقة 19 و 20 و 21 ---
+        { q: "العملية التي يتم فيها خلط المستويات الفرعية لإنتاج مستويات مهجنة جديدة ومتكافئة:", options: ["الرنين الكيميائي", "التهجين", "التمذوب", "التأين الذاتي"], correct: "التهجين" },
+        { q: "مادة تزيد من سرعة التفاعل الكيميائي دون أن تستهلك فيه:", options: ["المادة المتفاعلة", "المادة الناتجة", "المحفز (العامل المساعد)", "المثبط"], correct: "المحفز (العامل المساعد)" },
+        { q: "تسمى القوى التجاذبية الضعيفة التي تنشأ بين الجزيئات غير القطبية نتيجة إزاحة الإلكترونات بـ:", options: ["الروابط الهيدروجينية", "قوى التشتت (لندن)", "الروابط ثنائية القطب", "الروابط الأيونية"], correct: "قوى التشتت (لندن)" },
+        { q: "المادة التي تستقبل زوجاً من الإلكترونات بحسب مفهوم لويس للأحماض والقواعد هي:", options: ["الحمض", "القاعدة", "الملح المتعادل", "المذيب"], correct: "الحمض" },
+        { q: "الروابط الهيدروجينية هي السبب الرئيسي وراء ارتفاع درجة غليان الماء بشكل غير طبيعي مقارنة بغيره.", options: ["صح", "خطأ"], correct: "صح" },
+        { q: "كلما زادت مساحة سطح المواد المتفاعلة قلّت سرعة التفاعل الكيميائي بشكل ملحوظ.", options: ["صح", "خطأ"], correct: "خطأ" }
+    ];
+
+    let currentQuestionIdx = 0;
+    let score = 0;
+    let answeredQuestions = new Array(quizData.length).fill(null);
+
+    const quizContainer = document.getElementById('quiz-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const pageIndicator = document.getElementById('page-indicator');
+    const scoreLive = document.getElementById('score-live');
+    const navBox = document.getElementById('nav-box');
+    const resultCard = document.getElementById('result-card');
+    const scoreDisplay = document.getElementById('score-display');
+
+    function buildQuiz() {
+        quizContainer.innerHTML = '';
+        quizData.forEach((q, index) => {
+            const card = document.createElement('div');
+            card.className = `question-card ${index === 0 ? 'active' : ''}`;
+            card.id = `q-card-${index}`;
+
+            let optionsHtml = '';
+            q.options.forEach((opt) => {
+                optionsHtml += `<button class="option-btn" id="opt-${index}-${opt}" onclick="checkAnswer(${index}, '${opt}')">${opt}</button>`;
+            });
+
+            card.innerHTML = `
+                <div class="question-text">س ${index + 1}: ${q.q}</div>
+                <div class="options-grid">
+                    ${optionsHtml}
+                </div>
+            `;
+            quizContainer.appendChild(card);
+        });
+        updateNavigation();
+    }
+
+    function checkAnswer(qIdx, selectedOpt) {
+        if (answeredQuestions[qIdx] !== null) return;
+
+        const q = quizData[qIdx];
+        answeredQuestions[qIdx] = selectedOpt;
+
+        const selectedBtn = document.getElementById(`opt-${qIdx}-${selectedOpt}`);
+        
+        if (selectedOpt === q.correct) {
+            selectedBtn.classList.add('correct');
+            score++;
+            scoreLive.innerText = `النقاط: ${score}`;
+        } else {
+            selectedBtn.classList.add('wrong');
+            document.getElementById(`opt-${qIdx}-${q.correct}`).classList.add('correct');
+        }
+    }
+
+    function changeQuestion(direction) {
+        document.getElementById(`q-card-${currentQuestionIdx}`).classList.remove('active');
+        
+        currentQuestionIdx += direction;
+
+        if (currentQuestionIdx >= quizData.length) {
+            quizContainer.style.display = 'none';
+            navBox.style.display = 'none';
+            resultCard.style.display = 'block';
+            scoreDisplay.innerText = `نتيجتك النهائية هي: ${score} من أصل ${quizData.length} سؤال صحيح!`;
+            return;
         }
 
-        function login() {
-            const name = document.getElementById('username').value.trim();
-            if(!name) { alert("أدخل اسمك أولاً."); return; }
+        document.getElementById(`q-card-${currentQuestionIdx}`).classList.add('active');
+        updateNavigation();
+    }
 
-            currentUser = { 
-                name: name, 
-                days: 0, 
-                maxDays: 0, 
-                relapses: 0, 
-                lastClaimDateStr: "" 
-            };
-            
-            localStorage.setItem('activeUserLocal', JSON.stringify(currentUser));
-            document.querySelectorAll('.current-user-name').forEach(el => el.innerText = name);
-            document.getElementById('auth-screen').style.display = 'none';
-            
-            updateUI();
-            startNewDayTimerCheck();
+    function updateNavigation() {
+        pageIndicator.innerText = `السؤال ${currentQuestionIdx + 1} من ${quizData.length}`;
+        prevBtn.disabled = currentQuestionIdx === 0;
+        
+        if (currentQuestionIdx === quizData.length - 1) {
+            nextBtn.innerText = "عرض النتيجة النهائية 🏁";
+        } else {
+            nextBtn.innerText = "التالي ➡️";
         }
+    }
 
-        function claimDay() {
-            const todayStr = getTodayDateString();
-            
-            currentUser.days += 1;
-            if(currentUser.days > currentUser.maxDays) currentUser.maxDays = currentUser.days;
-            currentUser.lastClaimDateStr = todayStr;
-            
-            localStorage.setItem('activeUserLocal', JSON.stringify(currentUser));
-            updateUI();
-            startNewDayTimerCheck();
-        }
+    function restartQuiz() {
+        currentQuestionIdx = 0;
+        score = 0;
+        scoreLive.innerText = "النقاط: 0";
+        answeredQuestions.fill(null);
+        resultCard.style.display = 'none';
+        quizContainer.style.display = 'block';
+        navBox.style.display = 'flex';
+        buildQuiz();
+    }
 
-        function resetCounter() {
-            if(confirm("هل أنت متأكد من تصفير العداد والبدء من جديد؟")) {
-                currentUser.days = 0;
-                currentUser.relapses += 1;
-                currentUser.lastClaimDateStr = "";
-                
-                localStorage.setItem('activeUserLocal', JSON.stringify(currentUser));
-                updateUI();
-                startNewDayTimerCheck();
-            }
-        }
+    buildQuiz();
+</script>
 
-        function updateUI() {
-            document.getElementById('days-count').innerText = currentUser.days;
-            document.getElementById('stats-current-days').innerText = currentUser.days + " يوم";
-            document.getElementById('stats-best-record').innerText = currentUser.maxDays + " يوم";
-            document.getElementById('stats-relapses').innerText = currentUser.relapses;
-        }
-
-        function getTodayDateString() {
-            const d = new Date();
-            const year = d.getFullYear();
-            const month = String(d.getMonth() + 1).padStart(2, '0');
-            const day = String(d.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        }
-
-        function startNewDayTimerCheck() {
-            if (timerInterval) clearInterval(timerInterval);
-            const btn = document.getElementById('action-btn');
-            
-            if (!currentUser || !currentUser.lastClaimDateStr) { 
-                btn.disabled = false; 
-                btn.innerText = "➕ مر يوم آخر وأنا على عهدي"; 
-                return; 
-            }
-
-            function updateTimer() {
-                const todayStr = getTodayDateString();
-                
-                if (todayStr !== currentUser.lastClaimDateStr) {
-                    btn.disabled = false; 
-                    btn.innerText = "➕ مر يوم آخر وأنا على عهدي"; 
-                    clearInterval(timerInterval);
-                } else {
-                    const now = new Date();
-                    const midnight = new Date();
-                    midnight.setHours(24, 0, 0, 0); 
-                    
-                    const diff = midnight - now;
-                    const h = Math.floor(diff / 3600000);
-                    const m = Math.floor((diff % 3600000) / 60000);
-                    const s = Math.floor((diff % 60000) / 1000);
-                    
-                    btn.disabled = true; 
-                    btn.innerText = `🔒 تم حفظ اليوم (يفتح اليوم الجديد بعد: ${h}س و${m}د و${s}ث)`;
-                }
-            }
-            
-            updateTimer(); 
-            timerInterval = setInterval(updateTimer, 1000);
-        }
-
-        function switchScreen(name) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-            document.getElementById('screen-' + name).classList.add('active');
-            document.getElementById('nav-' + name).classList.add('active');
-        }
-
-        function logout() { 
-            if(confirm("تسجيل الخروج سيؤدي إلى مسح بيانات العداد المحلية، هل أنت متأكد؟")) {
-                localStorage.clear(); 
-                location.reload(); 
-            }
-        }
-
-        window.onload = initApp;
-    </script>
 </body>
 </html>
